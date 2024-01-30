@@ -34,7 +34,7 @@
     "post-autoload-dump": "composer generate-autoloader",
     "generate-autoloader": [
       "tools/phpab --basedir src --output src/autoload.php composer.json",
-      "tools/phpab --output tests/autoload.php tests"
+      "tools/phpab --output tests/unit/autoload.php tests"
     ],
     "clean": "rm -rf build/*",
     "test": "tools/phpunit",
