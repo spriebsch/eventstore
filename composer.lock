@@ -1,0 +1,152 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "a490a7168ae82ca11ea80edc7f8f5741",
+    "packages": [
+        {
+            "name": "spriebsch/sqlite",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spriebsch/sqlite.git",
+                "reference": "8a08401d95968fc911d3ffad3ecf29a234bdeffb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spriebsch/sqlite/zipball/8a08401d95968fc911d3ffad3ecf29a234bdeffb",
+                "reference": "8a08401d95968fc911d3ffad3ecf29a234bdeffb",
+                "shasum": ""
+            },
+            "require": {
+                "ext-sqlite3": "*",
+                "php": "^8.3"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Stefan Priebsch",
+                    "email": "stefan@priebsch.de",
+                    "homepage": "https://priebsch.de",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Lightweight Sqlite wrapper with lazy connection and schema creation.",
+            "support": {
+                "issues": "https://github.com/spriebsch/sqlite/issues",
+                "source": "https://github.com/spriebsch/sqlite/tree/1.0.1"
+            },
+            "time": "2024-01-29T21:13:37+00:00"
+        },
+        {
+            "name": "spriebsch/timestamp",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spriebsch/timestamp.git",
+                "reference": "59a74d63533478c763ad155ff9781ce0a38acb96"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spriebsch/timestamp/zipball/59a74d63533478c763ad155ff9781ce0a38acb96",
+                "reference": "59a74d63533478c763ad155ff9781ce0a38acb96",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.3"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Stefan Priebsch",
+                    "email": "stefan@priebsch.de",
+                    "homepage": "https://priebsch.de",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A timestamp with microsecond granularity.",
+            "support": {
+                "issues": "https://github.com/spriebsch/timestamp/issues",
+                "source": "https://github.com/spriebsch/timestamp/tree/1.0.0"
+            },
+            "time": "2024-01-29T20:56:10+00:00"
+        },
+        {
+            "name": "spriebsch/uuid",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spriebsch/UUID.git",
+                "reference": "763cb05e6b8d2a23b73a1f4de241e5e7eee8c3ec"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spriebsch/UUID/zipball/763cb05e6b8d2a23b73a1f4de241e5e7eee8c3ec",
+                "reference": "763cb05e6b8d2a23b73a1f4de241e5e7eee8c3ec",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.3"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Stefan Priebsch",
+                    "email": "stefan@priebsch.de",
+                    "homepage": "https://priebsch.de",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A fast and simple no-frills UUIDv4 implementation.",
+            "support": {
+                "issues": "https://github.com/spriebsch/UUID/issues",
+                "source": "https://github.com/spriebsch/UUID/tree/1.0.1"
+            },
+            "time": "2024-01-29T15:52:21+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": true,
+    "prefer-lowest": false,
+    "platform": {
+        "php": "^8.3",
+        "ext-sqlite3": "*"
+    },
+    "platform-dev": [],
+    "platform-overrides": {
+        "php": "8.3"
+    },
+    "plugin-api-version": "2.6.0"
+}
