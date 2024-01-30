@@ -46,4 +46,9 @@ class TestDecision
     {
         return $this->parameter2;
     }
+
+    public function changeState(TestSourcingEvent $event): void
+    {
+        $this->record($event);
+    }
 }

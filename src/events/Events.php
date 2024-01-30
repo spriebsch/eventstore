@@ -12,9 +12,11 @@
 namespace spriebsch\eventstore;
 
 use ArrayIterator;
+use Countable;
 use Iterator;
+use IteratorAggregate;
 
-class Events implements \IteratorAggregate, \Countable
+class Events implements IteratorAggregate, Countable
 {
     /**
      * @var Event[]

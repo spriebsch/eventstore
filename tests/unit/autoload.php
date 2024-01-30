@@ -42,6 +42,8 @@ spl_autoload_register(
                 'spriebsch\\eventstore\\testreadmodel' => '/../stubs/TestReadModel.php',
                 'spriebsch\\eventstore\\tests\\testevent' => '/../stubs/TestEvent.php',
                 'spriebsch\\eventstore\\tests\\testsourcingevent' => '/../stubs/TestSourcingEvent.php',
+                'spriebsch\\eventstore\\withinmemoryeventstore' => '/../stubs/WithInMemoryEventStore.php',
+                'spriebsch\\eventstore\\withinmemoryeventstoretraittest' => '/eventstore/WithInMemoryEventStoreTraitTest.php',
                 'spriebsch\\longbow\\tests\\testeventstream' => '/../stubs/TestEventStream.php'
             );
         }

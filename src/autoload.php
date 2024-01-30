@@ -9,6 +9,7 @@ spl_autoload_register(
             $classes = array(
                 'spriebsch\\eventstore\\abstracteventstream' => '/stream/AbstractEventStream.php',
                 'spriebsch\\eventstore\\correlationid' => '/event/CorrelationId.php',
+                'spriebsch\\eventstore\\correlationidhaschangedexception' => '/sourcing/CorrelationIdHasChangedException.php',
                 'spriebsch\\eventstore\\emitseventstrait' => '/events/EmitsEventsTrait.php',
                 'spriebsch\\eventstore\\emptyeventscollectionexception' => '/events/EmptyEventsCollectionException.php',
                 'spriebsch\\eventstore\\event' => '/event/Event.php',
@@ -30,6 +31,7 @@ spl_autoload_register(
                 'spriebsch\\eventstore\\json' => '/json/Json.php',
                 'spriebsch\\eventstore\\jsonevent' => '/json/JsonEvent.php',
                 'spriebsch\\eventstore\\keynotfoundinjsonexception' => '/json/KeyNotFoundInJsonException.php',
+                'spriebsch\\eventstore\\noeventstosourcefromexception' => '/sourcing/NoEventsToSourceFromException.php',
                 'spriebsch\\eventstore\\noeventwiththatidexception' => '/eventstore/NoEventWithThatIdException.php',
                 'spriebsch\\eventstore\\noeventwiththattopicexception' => '/eventstore/NoEventWithThatTopicException.php',
                 'spriebsch\\eventstore\\nosuchsinceeventidexception' => '/eventstore/NoSuchSinceEventIdException.php',

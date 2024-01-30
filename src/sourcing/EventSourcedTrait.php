@@ -13,11 +13,11 @@ namespace spriebsch\eventstore;
 
 trait EventSourcedTrait
 {
-    private ?EventId $sourcedEventId = null;
+    private ?EventId $lastSourcedEventId = null;
 
-    public static function sourceFrom(Events $events): self
+    public static function sourceFrom(Events $events): static
     {
-        return new self($events);
+        return new static($events);
     }
 
     public function lastEventId(): EventId
@@ -33,14 +33,18 @@ trait EventSourcedTrait
 
     public function lastSourcedEventId(): EventId
     {
-        return $this->sourcedEventId;
+        return $this->lastSourcedEventId;
     }
 
     private function reconstituteFrom(Events $events): void
     {
+        if (count($events) === 0) {
+            throw new NoEventsToSourceFromException;
+        }
+
         foreach ($events as $event) {
             $this->apply($event);
-            $this->sourcedEventId = $event->id();
+            $this->lastSourcedEventId = $event->id();
         }
     }
 
@@ -63,11 +67,11 @@ trait EventSourcedTrait
     private function ensureCorrelationIdDoesNotChange(CorrelationId $correlationId)
     {
         if ($this->id === null) {
-            return;
+            $this->id = $correlationId;
         }
 
         if ($correlationId->asUUID()->asString() !== $this->id->asString()) {
-            throw new \RuntimeException('Correlation ID mismatch');
+            throw new CorrelationIdHasChangedException($this->id, $correlationId);
         }
     }
 }
