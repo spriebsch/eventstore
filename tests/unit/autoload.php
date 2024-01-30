@@ -13,6 +13,8 @@ spl_autoload_register(
                 'spriebsch\\eventstore\\eventassertionstrait' => '/EventAssertionsTrait.php',
                 'spriebsch\\eventstore\\eventfactorytest' => '/event/EventFactoryTest.php',
                 'spriebsch\\eventstore\\eventidtest' => '/event/EventIdTest.php',
+                'spriebsch\\eventstore\\eventsourceddecisiontraittest' => '/sourcing/EventSourcedDecisionTraitTest.php',
+                'spriebsch\\eventstore\\eventsourcedreadmodeltraittest' => '/sourcing/EventSourcedReadModelTraitTest.php',
                 'spriebsch\\eventstore\\eventstest' => '/events/EventsTest.php',
                 'spriebsch\\eventstore\\eventstreamtest' => '/stream/EventStreamTest.php',
                 'spriebsch\\eventstore\\eventtest' => '/event/EventTest.php',
@@ -36,7 +38,10 @@ spl_autoload_register(
                 'spriebsch\\eventstore\\sqliteeventstoretest_event2' => '/../stubs/SqliteEventStoreTest_Event2.php',
                 'spriebsch\\eventstore\\sqliteeventstoretest_event3' => '/../stubs/SqliteEventStoreTest_Event3.php',
                 'spriebsch\\eventstore\\testcorrelationid' => '/../stubs/TestCorrelationId.php',
+                'spriebsch\\eventstore\\testdecision' => '/../stubs/TestDecision.php',
+                'spriebsch\\eventstore\\testreadmodel' => '/../stubs/TestReadModel.php',
                 'spriebsch\\eventstore\\tests\\testevent' => '/../stubs/TestEvent.php',
+                'spriebsch\\eventstore\\tests\\testsourcingevent' => '/../stubs/TestSourcingEvent.php',
                 'spriebsch\\longbow\\tests\\testeventstream' => '/../stubs/TestEventStream.php'
             );
         }

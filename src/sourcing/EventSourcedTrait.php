@@ -47,7 +47,6 @@ trait EventSourcedTrait
     private function apply(Event $event): void
     {
         $method = $this->determineApplyMethodNameFor($event);
-
         $this->ensureCorrelationIdDoesNotChange($event->correlationId());
 
         $this->$method($event);
