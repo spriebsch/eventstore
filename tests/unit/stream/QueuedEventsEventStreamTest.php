@@ -11,22 +11,21 @@
 
 namespace spriebsch\eventstore;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use spriebsch\eventstore\tests\TestEvent;
 use spriebsch\timestamp\Timestamp;
 
-/**
- * @covers \spriebsch\eventstore\AbstractEventStream
- * @covers \spriebsch\eventstore\EventStreamHasNotBeenQueriedException
- * @uses \spriebsch\eventstore\EventId
- * @uses \spriebsch\eventstore\EventTrait
- * @uses \spriebsch\eventstore\Events
- */
+#[CoversClass(AbstractEventStream::class)]
+#[CoversClass(EventStreamHasNotBeenQueriedException::class)]
+#[UsesClass(EventId::class)]
+#[UsesClass(EventTrait::class)]
+#[UsesClass(Events::class)]
 class QueuedEventsEventStreamTest extends TestCase
 {
-    /**
-     * @group feature
-     */
+    #[Group('feature')]
     public function test_retrieves_queued_events_with_specified_topics(): void
     {
         $events = Events::from(
@@ -50,9 +49,7 @@ class QueuedEventsEventStreamTest extends TestCase
         $stream->queued(null);
     }
 
-    /**
-     * @group feature
-     */
+    #[Group('feature')]
     public function test_retrieves_queued_events_with_specified_topics_with_limit(): void
     {
         $limit = 3;
@@ -79,9 +76,7 @@ class QueuedEventsEventStreamTest extends TestCase
         $stream->queued($events->lastEventId());
     }
 
-    /**
-     * @group feature
-     */
+    #[Group('feature')]
     public function test_retrieves_queued_events_with_specified_topics_for_correlation_id(): void
     {
         $correlationId = TestCorrelationId::generate();
@@ -107,9 +102,7 @@ class QueuedEventsEventStreamTest extends TestCase
         $stream->queued($sinceId, $correlationId);
     }
 
-    /**
-     * @group feature
-     */
+    #[Group('feature')]
     public function test_keeps_id_of_last_event(): void
     {
         $events = $this->events();

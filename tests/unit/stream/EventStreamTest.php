@@ -11,23 +11,19 @@
 
 namespace spriebsch\eventstore;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
-use spriebsch\eventstore\tests\TestEvent;
-use spriebsch\timestamp\Timestamp;
-use spriebsch\uuid\UUID;
 
-/**
- * @covers \spriebsch\eventstore\AbstractEventStream
- * @covers \spriebsch\eventstore\EventStreamHasNotBeenQueriedException
- * @uses \spriebsch\eventstore\EventId
- * @uses \spriebsch\eventstore\EventTrait
- * @uses \spriebsch\eventstore\Events
- */
+#[CoversClass(AbstractEventStream::class)]
+#[CoversClass(EventStreamHasNotBeenQueriedException::class)]
+#[UsesClass(EventId::class)]
+#[UsesClass(EventTrait::class)]
+#[UsesClass(Events::class)]
 class EventStreamTest extends TestCase
 {
-    /**
-     * @group exception
-     */
+    #[Group('exception')]
     public function test_read_last_event_id_when_events_were_not_retrieved(): void
     {
         $reader = $this->createMock(EventReader::class);
@@ -44,10 +40,5 @@ class EventStreamTest extends TestCase
                 return ['the-topic-1', 'the-topic-2'];
             }
         };
-    }
-
-    private function events(): Events
-    {
-        return Events::from(TestEvent::generate());
     }
 }

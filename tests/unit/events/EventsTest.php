@@ -12,6 +12,7 @@
 namespace spriebsch\eventstore;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use spriebsch\eventstore\tests\TestEvent;
@@ -20,7 +21,6 @@ use spriebsch\uuid\UUID;
 #[CoversClass(Events::class)]
 #[CoversClass(EmptyEventsCollectionException::class)]
 #[CoversClass(NoEventWithThatIdException::class)]
-#[UsesClass(EventHasNoTopicConstantException::class)]
 #[UsesClass(NoEventWithThatTopicException::class)]
 #[UsesClass(EventId::class)]
 #[UsesClass(EventTrait::class)]
@@ -30,9 +30,7 @@ use spriebsch\uuid\UUID;
 #[UsesClass(UUID::class)]
 class EventsTest extends TestCase
 {
-    /**
-     * @group feature
-     */
+    #[Group('feature')]
     public function test_can_be_created_from_json_events(): void
     {
         $id1 = EventId::generate();
@@ -75,9 +73,7 @@ class EventsTest extends TestCase
         $this->assertEquals($id2->asString(), $events[1]->id()->asString());
     }
 
-    /**
-     * @group feature
-     */
+    #[Group('feature')]
     public function test_last_event_id(): void
     {
         $events = $this->collectionWithTwoEvents();
@@ -86,9 +82,7 @@ class EventsTest extends TestCase
         $this->assertEquals($id->asString(), $events->lastEventId()->asString());
     }
 
-    /**
-     * @group exception
-     */
+    #[Group('feature')]
     public function test_retrieve_id_of_last_event_when_empty(): void
     {
         $events = Events::from();
@@ -99,17 +93,13 @@ class EventsTest extends TestCase
         $events->lastEventId();
     }
 
-    /**
-     * @group feature
-     */
+    #[Group('feature')]
     public function test_can_be_counted(): void
     {
         $this->assertCount(2, $this->collectionWithTwoEvents());
     }
 
-    /**
-     * @group feature
-     */
+    #[Group('feature')]
     public function test_can_be_iterated_over(): void
     {
         $this->assertCount(2, iterator_to_array($this->collectionWithTwoEvents(), true));

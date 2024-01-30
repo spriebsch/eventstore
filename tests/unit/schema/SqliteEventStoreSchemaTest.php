@@ -11,13 +11,13 @@
 
 namespace spriebsch\eventstore;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use spriebsch\sqlite\SqliteConnection;
 
-/**
- * @covers \spriebsch\eventstore\SqliteEventStoreSchema
- * @uses   \spriebsch\sqlite\SqliteConnection
- */
+#[CoversClass(SqliteEventStoreSchema::class)]
+#[UsesClass(SqliteConnection::class)]
 class SqliteEventStoreSchemaTest extends TestCase
 {
     public function test_create_schema_in_memory(): void

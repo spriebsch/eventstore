@@ -12,6 +12,7 @@
 namespace spriebsch\eventstore;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use spriebsch\eventstore\tests\TestEvent;
@@ -21,30 +22,10 @@ use spriebsch\timestamp\Timestamp;
 use spriebsch\uuid\UUID;
 use SQLite3Stmt;
 
-/**
- * @covers \spriebsch\eventstore\Exception
- * @uses   \spriebsch\sqlite\SqliteConnection
- * @uses   \spriebsch\eventstore\NoSuchSinceEventIdException
- * @uses   \spriebsch\eventstore\FailedToStoreEventException
- * @uses   \spriebsch\eventstore\FailedToStoreEventForUnknownReasonException
- * @uses   \spriebsch\eventstore\EventId
- * @uses   \spriebsch\eventstore\Json
- * @uses   \spriebsch\eventstore\JsonEvent
- * @uses   \spriebsch\eventstore\EventTrait
- * @uses   \spriebsch\eventstore\Events
- * @uses   \spriebsch\eventstore\EventFactory
- * @uses   \spriebsch\eventstore\SerializableEventTrait
- * @uses   \spriebsch\eventstore\SqliteEventStoreSchema
- * @uses   \spriebsch\eventstore\SelectEventsSqlStatement
- * @uses   \spriebsch\eventstore\SourcingSelectEventsSqlStatement
- * @uses   \spriebsch\eventstore\QueueSelectEventsSqlStatement
- */
-
 #[CoversClass(SelectEventsSqlStatement::class)]
 #[CoversClass(SqliteEventWriter::class)]
 #[CoversClass(SqliteEventReader::class)]
 #[CoversClass(NoEventWithThatIdException::class)]
-#[UsesClass(EventHasNoTopicConstantException::class)]
 #[UsesClass(NoEventWithThatTopicException::class)]
 #[UsesClass(EventId::class)]
 #[UsesClass(EventTrait::class)]
@@ -56,9 +37,7 @@ class SqliteEventStoreTest extends TestCase
 {
     private ?SqliteConnection $connection = null;
 
-    /**
-     * @group feature
-     */
+    #[Group('feature')]
     public function test_stores_events(): void
     {
         $connection = $this->connection();
@@ -88,9 +67,7 @@ class SqliteEventStoreTest extends TestCase
         $this->assertEquals($event2, $readEvents->asArray()[1]);
     }
 
-    /**
-     * @group feature
-     */
+    #[Group('feature')]
     public function test_reads_queued_events(): void
     {
         $connection = $this->connection();
@@ -128,9 +105,7 @@ class SqliteEventStoreTest extends TestCase
         $this->assertEquals($events->asArray()[2], $loadedEvents[0]);
     }
 
-    /**
-     * @group feature
-     */
+    #[Group('feature')]
     public function test_queue_is_empty_when_position_is_last_event(): void
     {
         $connection = $this->connection();
@@ -157,9 +132,7 @@ class SqliteEventStoreTest extends TestCase
         $this->assertCount(0, $loadedEvents);
     }
 
-    /**
-     * @group feature
-     */
+    #[Group('feature')]
     public function test_queue_is_empty_when_position_does_not_exist(): void
     {
         $connection = $this->connection();
@@ -173,9 +146,7 @@ class SqliteEventStoreTest extends TestCase
         $this->assertEmpty($result);
     }
 
-    /**
-     * @group exception
-     */
+    #[Group('exception')]
     public function test_exception_when_event_cannot_be_written(): void
     {
         $connection = $this->createMock(Connection::class);
@@ -200,9 +171,7 @@ class SqliteEventStoreTest extends TestCase
         );
     }
 
-    /**
-     * @group feature
-     */
+    #[Group('feature')]
     public function test_reads_all_events(): void
     {
         $connection = $this->connection();
@@ -221,9 +190,7 @@ class SqliteEventStoreTest extends TestCase
         $this->assertEquals($events->asArray(),$loadedEvents);
     }
 
-    /**
-     * @group feature
-     */
+    #[Group('feature')]
     public function test_sources_events_for_correlation_id(): void
     {
         $eventId = EventId::generate();
@@ -265,9 +232,7 @@ class SqliteEventStoreTest extends TestCase
         );
     }
 
-    /**
-     * @group feature
-     */
+    #[Group('feature')]
     public function test_reads_events_by_topic(): void
     {
         $connection = $this->connection();
@@ -290,9 +255,7 @@ class SqliteEventStoreTest extends TestCase
         $this->assertEquals($events->asArray()[2], $loadedEvents[1]);
     }
 
-    /**
-     * @group feature
-     */
+    #[Group('feature')]
     public function test_reads_events_with_limit(): void
     {
         $connection = $this->connection();
@@ -313,9 +276,7 @@ class SqliteEventStoreTest extends TestCase
         $this->assertEquals($events->asArray()[1], $loadedEvents[1]);
     }
 
-    /**
-     * @group exception
-     */
+    #[Group('exception')]
     public function test_fails_to_store_event(): void
     {
         $connection = SqliteConnection::from(':memory:');

@@ -11,21 +11,19 @@
 
 namespace spriebsch\eventstore;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \spriebsch\eventstore\Exception
- * @covers \spriebsch\eventstore\EmptyEventsCollectionException
- * @covers \spriebsch\eventstore\EventHasNoTopicConstantException
- * @covers \spriebsch\eventstore\EventStreamHasNotBeenQueriedException
- * @covers \spriebsch\eventstore\FailedToStoreEventException
- * @covers \spriebsch\eventstore\FailedToStoreEventForUnknownReasonException
- * @covers \spriebsch\eventstore\KeyNotFoundInJsonException
- * @covers \spriebsch\eventstore\NoEventWithThatIdException
- * @covers \spriebsch\eventstore\NoEventWithThatTopicException
- * @covers \spriebsch\eventstore\NoSuchSinceEventIdException
- * @covers \spriebsch\eventstore\EventId
- */
+#[CoversClass(Exception::class)]
+#[CoversClass(EmptyEventsCollectionException::class)]
+#[CoversClass(EventStreamHasNotBeenQueriedException::class)]
+#[CoversClass(FailedToStoreEventException::class)]
+#[CoversClass(FailedToStoreEventForUnknownReasonException::class)]
+#[CoversClass(KeyNotFoundInJsonException::class)]
+#[CoversClass(NoEventWithThatIdException::class)]
+#[CoversClass(NoEventWithThatTopicException::class)]
+#[CoversClass(NoSuchSinceEventIdException::class)]
+#[CoversClass(EventId::class)]
 class ExceptionTest extends TestCase
 {
     public function test_EmptyEventsCollectionException(): void

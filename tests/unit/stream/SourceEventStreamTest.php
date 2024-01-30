@@ -11,22 +11,20 @@
 
 namespace spriebsch\eventstore;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use spriebsch\eventstore\tests\TestEvent;
 use spriebsch\timestamp\Timestamp;
 
-/**
- * @covers \spriebsch\eventstore\AbstractEventStream
- * @covers \spriebsch\eventstore\EventStreamHasNotBeenQueriedException
- * @uses   \spriebsch\eventstore\EventId
- * @uses   \spriebsch\eventstore\EventTrait
- * @uses   \spriebsch\eventstore\Events
- */
+#[CoversClass(AbstractEventStream::class)]
+#[CoversClass(EventStreamHasNotBeenQueriedException::class)]
+#[UsesClass(EventId::class)]
+#[UsesClass(EventTrait::class)]
+#[UsesClass(Events::class)]
 class SourceEventStreamTest extends TestCase
 {
-    /**
-     * @group feature
-     */
     public function test_sources_events_with_specified_topics(): void
     {
         $eventId = EventId::generate();
@@ -51,9 +49,7 @@ class SourceEventStreamTest extends TestCase
         $stream->source($eventId);
     }
 
-    /**
-     * @group feature
-     */
+    #[Group('feature')]
     public function test_sources_events_with_specified_topics_with_limit(): void
     {
         $limit = 3;
@@ -80,9 +76,7 @@ class SourceEventStreamTest extends TestCase
         $stream->source($eventId);
     }
 
-    /**
-     * @group feature
-     */
+    #[Group('feature')]
     public function test_sources_events_with_specified_topics_for_correlation_id(): void
     {
         $correlationId = TestCorrelationId::generate();
@@ -113,9 +107,7 @@ class SourceEventStreamTest extends TestCase
         $stream->source($events->lastEventId(), $correlationId);
     }
 
-    /**
-     * @group feature
-     */
+    #[Group('feature')]
     public function test_sources_events_with_specified_topics_for_correlation_id_with_limit(): void
     {
         $limit = 3;
@@ -143,9 +135,7 @@ class SourceEventStreamTest extends TestCase
         $stream->source($events->lastEventId(), $correlationId);
     }
 
-    /**
-     * @group feature
-     */
+    #[Group('feature')]
     public function test_keeps_id_of_last_event(): void
     {
         $event1 = TestEvent::generate();
@@ -166,9 +156,7 @@ class SourceEventStreamTest extends TestCase
         $this->assertSame($lastId->asString(), $stream->lastEvent()->asString());
     }
 
-    /**
-     * @group exception
-     */
+    #[Group('exception')]
     public function test_read_last_event_id_when_events_were_not_retrieved(): void
     {
         $reader = $this->createMock(EventReader::class);

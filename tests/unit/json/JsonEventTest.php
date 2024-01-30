@@ -11,12 +11,12 @@
 
 namespace spriebsch\eventstore;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \spriebsch\eventstore\JsonEvent
- * @uses   \spriebsch\eventstore\Json
- */
+#[CoversClass(JsonEvent::class)]
+#[UsesClass(Json::class)]
 class JsonEventTest extends TestCase
 {
     public function test_topic(): void

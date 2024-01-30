@@ -11,14 +11,14 @@
 
 namespace spriebsch\eventstore;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use spriebsch\eventstore\tests\TestEvent;
 
-/**
- * @covers \spriebsch\eventstore\EmitsEventsTrait
- * @uses   \spriebsch\eventstore\Events
- * @uses   \spriebsch\eventstore\EventId
- */
+#[CoversClass(EmitsEventsTrait::class)]
+#[UsesClass(EventId::class)]
+#[UsesClass(Events::class)]
 class EmitsEventsTraitTest extends TestCase
 {
     public function test_emits_events(): void

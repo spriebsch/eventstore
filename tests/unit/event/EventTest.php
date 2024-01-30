@@ -13,6 +13,7 @@ namespace spriebsch\eventstore;
 
 use Error;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use spriebsch\eventstore\tests\TestEvent;
@@ -23,9 +24,7 @@ use spriebsch\timestamp\Timestamp;
 #[UsesClass(EventId::class)]
 class EventTest extends TestCase
 {
-    /**
-     * @group feature
-     */
+    #[Group('feature')]
     public function test_has_correlation_id(): void
     {
         $id = EventId::generate();
@@ -46,7 +45,7 @@ class EventTest extends TestCase
     }
 
     /**
-     * @group feature
+     *
      */
     public function test_has_timestamp(): void
     {
@@ -64,9 +63,7 @@ class EventTest extends TestCase
         $this->assertSame($timestamp->asString(), $event->timestamp()->asString());
     }
 
-    /**
-     * @group feature
-     */
+    #[Group('feature')]
     public function test_has_topic(): void
     {
         $id = EventId::generate();
@@ -83,9 +80,7 @@ class EventTest extends TestCase
         $this->assertSame('spriebsch.eventstore.the-test-topic', $event::topic());
     }
 
-    /**
-     * @group feature
-     */
+    #[Group('feature')]
     public function test_has_payload(): void
     {
         $id = EventId::generate();
@@ -103,9 +98,7 @@ class EventTest extends TestCase
         $this->assertSame($payload, $event->payload());
     }
 
-    /**
-     * @group feature
-     */
+    #[Group('feature')]
     public function test_has_event_id(): void
     {
         $id = EventId::generate();
@@ -122,9 +115,7 @@ class EventTest extends TestCase
         $this->assertSame($id->asString(), $event->id()->asString());
     }
 
-    /**
-     * @group exception
-     */
+    #[Group('exception')]
     public function test_event_id_must_be_set(): void
     {
         $event = new SerializableEventTraitTest_UninitializedEvent();
@@ -135,9 +126,7 @@ class EventTest extends TestCase
         $event->id();
     }
 
-    /**
-     * @group exception
-     */
+    #[Group('exception')]
     public function test_correlation_id_must_be_set(): void
     {
         $event = new SerializableEventTraitTest_UninitializedEvent();
@@ -148,9 +137,7 @@ class EventTest extends TestCase
         $event->correlationId();
     }
 
-    /**
-     * @group exception
-     */
+    #[Group('exception')]
     public function test_timestamp_must_be_set(): void
     {
         $event = new SerializableEventTraitTest_UninitializedEvent();
