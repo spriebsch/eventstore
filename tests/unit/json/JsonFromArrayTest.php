@@ -11,10 +11,10 @@
 
 namespace spriebsch\eventstore;
 
-/**
- * @covers \spriebsch\eventstore\Json
- * @uses   \spriebsch\eventstore\KeyNotFoundInJsonException
- */
+use PHPUnit\Framework\Attributes\CoversClass;
+
+#[CoversClass(Json::class)]
+#[CoversClass(KeyNotFoundInJsonException::class)]
 class JsonFromArrayTest extends AbstractJsonTestBase
 {
     protected function createJson(): Json
