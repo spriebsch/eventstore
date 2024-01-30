@@ -63,16 +63,6 @@ class ExceptionTest extends TestCase
         );
     }
 
-    public function test_EventHasNoTopicConstantException(): void
-    {
-        $exception = new EventHasNoTopicConstantException('the-class');
-
-        $this->assertStringContainsString(
-            'Event the-class must have a topic constant',
-            $exception->getMessage()
-        );
-    }
-
     public function test_FailedToStoreEventException(): void
     {
         $id = EventId::generate();
