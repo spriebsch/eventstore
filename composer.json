@@ -31,13 +31,16 @@
     "spriebsch/uuid": "^1.0"
   },
   "scripts": {
-    "post-autoload-dump": "composer generate-autoloader",
+    "post-autoload-dump": "@generate-autoloader",
     "generate-autoloader": [
-      "tools/phpab --basedir src --output src/autoload.php composer.json",
+      "tools/phpab --basedir src -t autoload-template.php --output src/autoload.php composer.json",
       "tools/phpab --output tests/unit/autoload.php tests"
     ],
     "clean": "rm -rf build/*",
-    "test": "tools/phpunit",
+    "test": [
+      "@generate-autoloader",
+      "tools/phpunit"
+    ],
     "mutation-test": [
       "rm build/infection.log",
       "tools/infection"
