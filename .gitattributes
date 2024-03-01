@@ -1,0 +1,7 @@
+/.phive/ export-ignore
+/.phpunit.cache/ export-ignore
+/build export-ignore
+/tests export-ignore
+/tools export-ignore
+/.gitignore export-ignore
+/.gitattributes export-ignore

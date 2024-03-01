@@ -8,7 +8,6 @@ spl_autoload_register(
         static $classes = null;
         if ($classes === null) {
             $classes = array(
-                'foo' => '/Foo.php',
                 'spriebsch\\eventstore\\abstracteventstream' => '/stream/AbstractEventStream.php',
                 'spriebsch\\eventstore\\correlationid' => '/event/CorrelationId.php',
                 'spriebsch\\eventstore\\correlationidhaschangedexception' => '/sourcing/CorrelationIdHasChangedException.php',
