@@ -45,10 +45,6 @@ class SqliteEventWriter implements EventWriter
 
     public function store(Events $events): void
     {
-        if (!$this->transactionRunning) {
-            $this->beginTransaction();
-        }
-
         foreach ($events as $event) {
             $this->insertEvent(
                 $event::topic(),
@@ -57,8 +53,6 @@ class SqliteEventWriter implements EventWriter
                 json_encode($event, JSON_THROW_ON_ERROR)
             );
         }
-
-        $this->endTransaction();
     }
 
     public function endTransaction(): void
