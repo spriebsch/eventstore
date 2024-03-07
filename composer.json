@@ -33,7 +33,7 @@
   "scripts": {
     "post-autoload-dump": "@generate-autoloader",
     "generate-autoloader": [
-      "tools/phpab --basedir src -t autoload-template.php --output src/autoload.php composer.json",
+      "tools/phpab --basedir src --output src/autoload.php composer.json",
       "tools/phpab --output tests/unit/autoload.php tests"
     ],
     "clean": "rm -rf build/*",
@@ -56,6 +56,10 @@
       "tools/phpunit --coverage-html build/code-coverage --path-coverage"
     ],
     "show-coverage": "gio open build/code-coverage/index.html",
-    "update-tools": "phive update"
+    "update-tools": [
+      "rm tools/phpunit.phar",
+      "phive update",
+      "ln -s phpunit tools/phpunit.phar"
+    ]
   }
 }
