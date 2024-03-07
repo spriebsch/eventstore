@@ -38,12 +38,12 @@ final class SqliteEventStoreSchema extends SqliteSchema
 
     private function sql(): string
     {
-        return 'CREATE TABLE `events` (
+        return 'BEGIN TRANSACTION; CREATE TABLE `events` (
             `id` INTEGER PRIMARY KEY AUTOINCREMENT,
             `eventId` TEXT UNIQUE,
             `correlationId` TEXT,
             `topic` TEXT,
             `event` TEXT
-        );';
+        ); END TRANSACTION;';
     }
 }
