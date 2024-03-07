@@ -11,10 +11,10 @@
 
 namespace spriebsch\eventstore;
 
-interface EventWriter
+final class NoTransactionRunningException extends Exception
 {
-    public function beginTransaction(): void;
-    public function store(Events $events): void;
-
-    public function endTransaction(): void;
+    public function __construct()
+    {
+        parent::__construct('No transaction is running');
+    }
 }

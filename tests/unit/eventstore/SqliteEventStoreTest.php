@@ -29,6 +29,8 @@ use SQLite3Stmt;
 #[CoversClass(NoEventWithThatTopicException::class)]
 #[CoversClass(FailedToStoreEventException::class)]
 #[CoversClass(FailedToStoreEventForUnknownReasonException::class)]
+#[CoversClass(TransactionRunningException::class)]
+#[CoversClass(NoTransactionRunningException::class)]
 #[UsesClass(EventId::class)]
 #[UsesClass(Events::class)]
 #[UsesClass(EventTrait::class)]
@@ -299,6 +301,29 @@ class SqliteEventStoreTest extends TestCase
         $this->expectException(FailedToStoreEventException::class);
 
         $writer->store(Events::from($event));
+    }
+
+    #[Group('exception')]
+    public function test_transaction_cannot_be_started_when_running(): void
+    {
+        $connection = SqliteConnection::from(':memory:');
+        $writer = SqliteEventWriter::from($connection);
+        $writer->beginTransaction();
+
+        $this->expectException(TransactionRunningException::class);
+
+        $writer->beginTransaction();
+    }
+
+    #[Group('exception')]
+    public function test_transaction_cannot_be_ended_when_not_started(): void
+    {
+        $connection = SqliteConnection::from(':memory:');
+        $writer = SqliteEventWriter::from($connection);
+
+        $this->expectException(NoTransactionRunningException::class);
+
+        $writer->endTransaction();
     }
 
     private function threeTestEvents(): Events

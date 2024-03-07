@@ -21,6 +21,7 @@ class SqliteEventWriter implements EventWriter
 {
     private Connection $connection;
     private ?SQLite3Stmt $statement = null;
+    private bool $transactionRunning = false;
 
     public static function from(Connection $connection): self
     {
@@ -32,8 +33,22 @@ class SqliteEventWriter implements EventWriter
         $this->connection = $connection;
     }
 
+    public function beginTransaction(): void
+    {
+        if ($this->transactionRunning) {
+            throw new TransactionRunningException;
+        }
+
+        $this->connection->exec('BEGIN TRANSACTION');
+        $this->transactionRunning = true;
+    }
+
     public function store(Events $events): void
     {
+        if (!$this->transactionRunning) {
+            $this->beginTransaction();
+        }
+
         foreach ($events as $event) {
             $this->insertEvent(
                 $event::topic(),
@@ -42,6 +57,18 @@ class SqliteEventWriter implements EventWriter
                 json_encode($event, JSON_THROW_ON_ERROR)
             );
         }
+
+        $this->endTransaction();
+    }
+
+    public function endTransaction(): void
+    {
+        if (!$this->transactionRunning) {
+            throw new NoTransactionRunningException;
+        }
+
+        $this->connection->exec('END TRANSACTION');
+        $this->transactionRunning = false;
     }
 
     private function insertEvent(string $topic, EventId $eventId, CorrelationId $correlationId, string $json): void
@@ -55,6 +82,7 @@ class SqliteEventWriter implements EventWriter
             $statement->bindValue(':event', $json, SQLITE3_TEXT);
 
             $result = $statement->execute();
+            $statement->reset();
 
             if ($result === false) {
                 throw new FailedToStoreEventForUnknownReasonException($eventId);
