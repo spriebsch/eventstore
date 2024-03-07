@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "spriebsch/sqlite",
-            "version": "1.0.1",
+            "version": "1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spriebsch/sqlite.git",
-                "reference": "8a08401d95968fc911d3ffad3ecf29a234bdeffb"
+                "reference": "f15613e781f6711b435d57e8579dc48bc1a513f0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spriebsch/sqlite/zipball/8a08401d95968fc911d3ffad3ecf29a234bdeffb",
-                "reference": "8a08401d95968fc911d3ffad3ecf29a234bdeffb",
+                "url": "https://api.github.com/repos/spriebsch/sqlite/zipball/f15613e781f6711b435d57e8579dc48bc1a513f0",
+                "reference": "f15613e781f6711b435d57e8579dc48bc1a513f0",
                 "shasum": ""
             },
             "require": {
@@ -45,9 +45,9 @@
             "description": "Lightweight Sqlite wrapper with lazy connection and schema creation.",
             "support": {
                 "issues": "https://github.com/spriebsch/sqlite/issues",
-                "source": "https://github.com/spriebsch/sqlite/tree/1.0.1"
+                "source": "https://github.com/spriebsch/sqlite/tree/1.0.3"
             },
-            "time": "2024-01-29T21:13:37+00:00"
+            "time": "2024-03-07T11:31:58+00:00"
         },
         {
             "name": "spriebsch/timestamp",
@@ -93,16 +93,16 @@
         },
         {
             "name": "spriebsch/uuid",
-            "version": "1.0.1",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spriebsch/UUID.git",
-                "reference": "763cb05e6b8d2a23b73a1f4de241e5e7eee8c3ec"
+                "reference": "8cb0e404094ff9651b525e5b544c4616441c8e75"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spriebsch/UUID/zipball/763cb05e6b8d2a23b73a1f4de241e5e7eee8c3ec",
-                "reference": "763cb05e6b8d2a23b73a1f4de241e5e7eee8c3ec",
+                "url": "https://api.github.com/repos/spriebsch/UUID/zipball/8cb0e404094ff9651b525e5b544c4616441c8e75",
+                "reference": "8cb0e404094ff9651b525e5b544c4616441c8e75",
                 "shasum": ""
             },
             "require": {
@@ -129,9 +129,9 @@
             "description": "A fast and simple no-frills UUIDv4 implementation.",
             "support": {
                 "issues": "https://github.com/spriebsch/UUID/issues",
-                "source": "https://github.com/spriebsch/UUID/tree/1.0.1"
+                "source": "https://github.com/spriebsch/UUID/tree/1.0.2"
             },
-            "time": "2024-01-29T15:52:21+00:00"
+            "time": "2024-03-01T17:13:59+00:00"
         }
     ],
     "packages-dev": [],
