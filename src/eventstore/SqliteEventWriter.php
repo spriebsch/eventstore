@@ -13,12 +13,14 @@ namespace spriebsch\eventstore;
 
 use spriebsch\sqlite\Connection;
 use Throwable;
+use SQLite3Stmt;
 use const JSON_THROW_ON_ERROR;
 use const SQLITE3_TEXT;
 
 class SqliteEventWriter implements EventWriter
 {
     private Connection $connection;
+    private ?SQLite3Stmt $statement = null;
 
     public static function from(Connection $connection): self
     {
@@ -45,9 +47,7 @@ class SqliteEventWriter implements EventWriter
     private function insertEvent(string $topic, EventId $eventId, CorrelationId $correlationId, string $json): void
     {
         try {
-            $statement = $this->connection->prepare(
-                'INSERT INTO events (topic, eventId, correlationId, event) VALUES(:topic, :eventId, :correlationId, :event)'
-            );
+            $statement = $this->prepareStatement();
 
             $statement->bindValue(':topic', $topic, SQLITE3_TEXT);
             $statement->bindValue(':eventId', $eventId->asString(), SQLITE3_TEXT);
@@ -62,5 +62,16 @@ class SqliteEventWriter implements EventWriter
         } catch (Throwable $exception) {
             throw new FailedToStoreEventException($eventId, $exception);
         }
+    }
+
+    private function prepareStatement(): SQLite3Stmt
+    {
+        if ($this->statement === null) {
+            $this->statement = $this->connection->prepare(
+                'INSERT INTO events (topic, eventId, correlationId, event) VALUES(:topic, :eventId, :correlationId, :event);'
+            );
+        }
+
+        return $this->statement;
     }
 }

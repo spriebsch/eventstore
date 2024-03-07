@@ -19,7 +19,7 @@ final class SqliteEventStoreSchema extends SqliteSchema
     protected function schemaExists(Connection $connection): bool
     {
         $result = $connection->query(
-            "SELECT sql FROM sqlite_master WHERE name='events'"
+            "SELECT sql FROM sqlite_master WHERE name='events';"
         );
 
         $row = $result->fetchArray(SQLITE3_ASSOC);
