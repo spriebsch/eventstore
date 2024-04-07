@@ -66,7 +66,7 @@ trait EventSourcedTrait
 
     private function ensureCorrelationIdDoesNotChange(CorrelationId $correlationId)
     {
-        if ($this->id === null) {
+        if (!isset($this->id)) {
             $this->id = $correlationId;
         }
 
