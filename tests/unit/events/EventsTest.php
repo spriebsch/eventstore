@@ -33,6 +33,12 @@ class EventsTest extends TestCase
     #[Group('feature')]
     public function test_can_be_created_from_json_events(): void
     {
+        EventFactory::configureWith(
+            [
+                TestEvent::topic() => TestEvent::class
+            ]
+        );
+
         $id1 = EventId::generate();
         $id2 = EventId::generate();
 
@@ -111,5 +117,10 @@ class EventsTest extends TestCase
             TestEvent::generate(),
             TestEvent::generate()
         );
+    }
+
+    protected function tearDown(): void
+    {
+        EventFactory::reset();
     }
 }

@@ -49,6 +49,8 @@ class SqliteEventStoreTest extends TestCase
     #[Group('feature')]
     public function test_stores_events(): void
     {
+        EventFactory::configureWith(['spriebsch.eventstore.the-test-topic' => TestEvent::class]);
+
         $connection = $this->connection();
 
         $event1 = TestEvent::from(
@@ -79,6 +81,14 @@ class SqliteEventStoreTest extends TestCase
     #[Group('feature')]
     public function test_reads_queued_events(): void
     {
+        EventFactory::configureWith(
+            [
+                'eventStore.test1' => SqliteEventStoreTest_Event1::class,
+                'eventStore.test2' => SqliteEventStoreTest_Event2::class,
+                'eventStore.test3' => SqliteEventStoreTest_Event3::class
+            ]
+        );
+
         $connection = $this->connection();
         $writer = SqliteEventWriter::from($connection);
 
@@ -117,6 +127,14 @@ class SqliteEventStoreTest extends TestCase
     #[Group('feature')]
     public function test_queue_is_empty_when_position_is_last_event(): void
     {
+        EventFactory::configureWith(
+            [
+                'eventStore.test1' => SqliteEventStoreTest_Event1::class,
+                'eventStore.test2' => SqliteEventStoreTest_Event2::class,
+                'eventStore.test3' => SqliteEventStoreTest_Event3::class
+            ]
+        );
+
         $connection = $this->connection();
         $writer = SqliteEventWriter::from($connection);
 
@@ -144,6 +162,14 @@ class SqliteEventStoreTest extends TestCase
     #[Group('feature')]
     public function test_queue_is_empty_when_position_does_not_exist(): void
     {
+        EventFactory::configureWith(
+            [
+                'eventStore.test1' => SqliteEventStoreTest_Event1::class,
+                'eventStore.test2' => SqliteEventStoreTest_Event2::class,
+                'eventStore.test3' => SqliteEventStoreTest_Event3::class
+            ]
+        );
+
         $connection = $this->connection();
 
         $result = SqliteEventReader::from($connection)->queued(
@@ -158,6 +184,14 @@ class SqliteEventStoreTest extends TestCase
     #[Group('exception')]
     public function test_exception_when_event_cannot_be_written(): void
     {
+        EventFactory::configureWith(
+            [
+                'eventStore.test1' => SqliteEventStoreTest_Event1::class,
+                'eventStore.test2' => SqliteEventStoreTest_Event2::class,
+                'eventStore.test3' => SqliteEventStoreTest_Event3::class
+            ]
+        );
+
         $connection = $this->createMock(Connection::class);
         $writer = SqliteEventWriter::from($connection);
 
@@ -183,6 +217,14 @@ class SqliteEventStoreTest extends TestCase
     #[Group('feature')]
     public function test_reads_all_events(): void
     {
+        EventFactory::configureWith(
+            [
+                'eventStore.test1' => SqliteEventStoreTest_Event1::class,
+                'eventStore.test2' => SqliteEventStoreTest_Event2::class,
+                'eventStore.test3' => SqliteEventStoreTest_Event3::class
+            ]
+        );
+
         $connection = $this->connection();
         $writer = SqliteEventWriter::from($connection);
 
@@ -196,12 +238,20 @@ class SqliteEventStoreTest extends TestCase
             null
         )->asArray();
 
-        $this->assertEquals($events->asArray(),$loadedEvents);
+        $this->assertEquals($events->asArray(), $loadedEvents);
     }
 
     #[Group('feature')]
     public function test_sources_events_for_correlation_id(): void
     {
+        EventFactory::configureWith(
+            [
+                'eventStore.test1' => SqliteEventStoreTest_Event1::class,
+                'eventStore.test2' => SqliteEventStoreTest_Event2::class,
+                'eventStore.test3' => SqliteEventStoreTest_Event3::class
+            ]
+        );
+
         $eventId = EventId::generate();
         $correlationId = TestCorrelationId::generate();
 
@@ -244,6 +294,14 @@ class SqliteEventStoreTest extends TestCase
     #[Group('feature')]
     public function test_reads_events_by_topic(): void
     {
+        EventFactory::configureWith(
+            [
+                'eventStore.test1' => SqliteEventStoreTest_Event1::class,
+                'eventStore.test2' => SqliteEventStoreTest_Event2::class,
+                'eventStore.test3' => SqliteEventStoreTest_Event3::class
+            ]
+        );
+
         $connection = $this->connection();
         $writer = SqliteEventWriter::from($connection);
 
@@ -267,6 +325,14 @@ class SqliteEventStoreTest extends TestCase
     #[Group('feature')]
     public function test_reads_events_with_limit(): void
     {
+        EventFactory::configureWith(
+            [
+                'eventStore.test1' => SqliteEventStoreTest_Event1::class,
+                'eventStore.test2' => SqliteEventStoreTest_Event2::class,
+                'eventStore.test3' => SqliteEventStoreTest_Event3::class
+            ]
+        );
+
         $connection = $this->connection();
         $writer = SqliteEventWriter::from($connection);
 
@@ -288,6 +354,14 @@ class SqliteEventStoreTest extends TestCase
     #[Group('exception')]
     public function test_fails_to_store_event(): void
     {
+        EventFactory::configureWith(
+            [
+                'eventStore.test1' => SqliteEventStoreTest_Event1::class,
+                'eventStore.test2' => SqliteEventStoreTest_Event2::class,
+                'eventStore.test3' => SqliteEventStoreTest_Event3::class
+            ]
+        );
+
         $connection = SqliteConnection::from(':memory:');
         $writer = SqliteEventWriter::from($connection);
 
@@ -355,5 +429,10 @@ class SqliteEventStoreTest extends TestCase
         }
 
         return $this->connection;
+    }
+
+    protected function tearDown(): void
+    {
+        EventFactory::reset();
     }
 }

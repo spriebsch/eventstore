@@ -17,10 +17,13 @@ use PHPUnit\Framework\TestCase;
 use spriebsch\eventstore\tests\TestEvent;
 use spriebsch\timestamp\Timestamp;
 use spriebsch\uuid\UUID;
+use stdClass;
 use const JSON_THROW_ON_ERROR;
 
 #[CoversClass(EventFactory::class)]
 #[CoversClass(NoEventWithThatTopicException::class)]
+#[CoversClass(EventFactoryNotConfiguredException::class)]
+#[CoversClass(ClassDoesNotImplementEventInterfaceException::class)]
 #[UsesClass(EventId::class)]
 #[UsesClass(EventTrait::class)]
 #[UsesClass(Json::class)]
@@ -28,14 +31,42 @@ use const JSON_THROW_ON_ERROR;
 #[UsesClass(UUID::class)]
 class EventFactoryTest extends TestCase
 {
+    public function test_exception_when_not_configured(): void
+    {
+        $eventFactory = new EventFactory;
+
+        $this->expectException(EventFactoryNotConfiguredException::class);
+
+        $eventFactory->createEventForTopic(
+            'the-topic',
+            Json::from(json_encode([]))
+        );
+    }
+
     public function test_exception_on_unknown_topic(): void
     {
+        EventFactory::configureWith([]);
         $eventFactory = new EventFactory;
 
         $this->expectException(NoEventWithThatTopicException::class);
 
         $eventFactory->createEventForTopic(
             'unknown-topic',
+            Json::from(json_encode([]))
+        );
+    }
+
+    public function test_exception_when_class_is_no_event(): void
+    {
+        $topic = 'the-topic';
+
+        EventFactory::configureWith([$topic => stdClass::class]);
+        $eventFactory = new EventFactory;
+
+        $this->expectException(ClassDoesNotImplementEventInterfaceException::class);
+
+        $eventFactory->createEventForTopic(
+            $topic,
             Json::from(json_encode([]))
         );
     }
@@ -49,6 +80,7 @@ class EventFactoryTest extends TestCase
         $correlationId = TestCorrelationId::generate();
         $timestamp = Timestamp::generate();
 
+        EventFactory::configureWith([$topic => TestEvent::class]);
         $eventFactory = new EventFactory;
         $event = $eventFactory->createEventForTopic(
             $topic,
@@ -76,5 +108,10 @@ class EventFactoryTest extends TestCase
             $timestamp->asString(),
             $event->timestamp()->asString()
         );
+    }
+
+    protected function tearDown(): void
+    {
+        EventFactory::reset();
     }
 }

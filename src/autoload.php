@@ -8,12 +8,14 @@ spl_autoload_register(
         if ($classes === null) {
             $classes = array(
                 'spriebsch\\eventstore\\abstracteventstream' => '/stream/AbstractEventStream.php',
+                'spriebsch\\eventstore\\classdoesnotimplementeventinterfaceexception' => '/event/ClassDoesNotImplementEventInterfaceException.php',
                 'spriebsch\\eventstore\\correlationid' => '/event/CorrelationId.php',
                 'spriebsch\\eventstore\\correlationidhaschangedexception' => '/sourcing/CorrelationIdHasChangedException.php',
                 'spriebsch\\eventstore\\emitseventstrait' => '/events/EmitsEventsTrait.php',
                 'spriebsch\\eventstore\\emptyeventscollectionexception' => '/events/EmptyEventsCollectionException.php',
                 'spriebsch\\eventstore\\event' => '/event/Event.php',
                 'spriebsch\\eventstore\\eventfactory' => '/event/EventFactory.php',
+                'spriebsch\\eventstore\\eventfactorynotconfiguredexception' => '/event/EventFactoryNotConfiguredException.php',
                 'spriebsch\\eventstore\\eventid' => '/event/EventId.php',
                 'spriebsch\\eventstore\\eventreader' => '/eventstore/EventReader.php',
                 'spriebsch\\eventstore\\events' => '/events/Events.php',

@@ -13,6 +13,18 @@ namespace spriebsch\eventstore;
 
 class EventFactory
 {
+    private static ?array $eventMap = null;
+
+    public static function configureWith(array $eventMap): void
+    {
+        self::$eventMap = $eventMap;
+    }
+
+    public static function reset(): void
+    {
+        self::$eventMap = null;
+    }
+
     public function createEventForTopic(string $topic, Json $json): Event
     {
         return ($this->findEventClassForTopic($topic))::fromJson($json);
@@ -20,19 +32,31 @@ class EventFactory
 
     private function findEventClassForTopic(string $topic): string
     {
-        foreach (get_declared_classes() as $class) {
-            if ($this->classDoesNotImplementEventInterface($class)) {
-                continue;
-            }
-
-            // @todo that class needs to have the method, not just the base class?
-
-            if ($class::topic() === $topic) {
-                return $class;
-            }
+        if ($this->eventMapIsNotConfigured()) {
+            throw new EventFactoryNotConfiguredException;
         }
 
-        throw new NoEventWithThatTopicException($topic);
+        if ($this->eventMapDoesNotContainTopic($topic)) {
+            throw new NoEventWithThatTopicException($topic);
+        }
+
+        $class = self::$eventMap[$topic];
+
+        if ($this->classDoesNotImplementEventInterface($class)) {
+            throw new ClassDoesNotImplementEventInterfaceException($class, $topic);
+        }
+
+        return $class;
+    }
+
+    private function eventMapIsNotConfigured(): bool
+    {
+        return self::$eventMap === null;
+    }
+
+    private function eventMapDoesNotContainTopic(string $topic): bool
+    {
+        return !isset(self::$eventMap[$topic]);
     }
 
     private function classDoesNotImplementEventInterface(string $class): bool
