@@ -79,6 +79,40 @@ class SqliteEventStoreTest extends TestCase
     }
 
     #[Group('feature')]
+    public function test_stores_events_in_transaction(): void
+    {
+        EventFactory::configureWith(['spriebsch.eventstore.the-test-topic' => TestEvent::class]);
+
+        $connection = $this->connection();
+
+        $event1 = TestEvent::from(
+            EventId::generate(),
+            TestCorrelationId::generate(),
+            Timestamp::generate(),
+            'the-payload'
+        );
+        $event2 = TestEvent::from(
+            EventId::generate(),
+            TestCorrelationId::generate(),
+            Timestamp::generate(),
+            'the-payload'
+        );
+
+        $writer = SqliteEventWriter::from($connection);
+        $writer->beginTransaction();
+        $writer->store(Events::from($event1, $event2));
+        $writer->endTransaction();
+
+        $reader = SqliteEventReader::from($connection);
+
+        $readEvents = $reader->queued(null, null, null);
+
+        $this->assertCount(2, $readEvents);
+        $this->assertEquals($event1, $readEvents->asArray()[0]);
+        $this->assertEquals($event2, $readEvents->asArray()[1]);
+    }
+
+    #[Group('feature')]
     public function test_reads_queued_events(): void
     {
         EventFactory::configureWith(

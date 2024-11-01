@@ -25,6 +25,23 @@ use spriebsch\timestamp\Timestamp;
 #[UsesClass(Events::class)]
 class SourceEventStreamTest extends TestCase
 {
+    public function test_some(): void
+    {
+        $eventId = EventId::generate();
+
+        $reader = $this->createMock(EventReader::class);
+        $reader
+            ->method('source')
+            ->willReturn(Events::from());
+
+        $stream = $this->stream($reader);
+
+        $result = $stream->source($eventId);
+
+        $this->assertCount(0, $result);
+    }
+
+
     public function test_sources_events_with_specified_topics(): void
     {
         $eventId = EventId::generate();
