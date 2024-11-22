@@ -31,7 +31,7 @@ class Json
         $this->json = $json;
     }
 
-    public function get(string $key = null): mixed
+    public function get(?string $key = null): mixed
     {
         $this->lazilyDecodeData();
 

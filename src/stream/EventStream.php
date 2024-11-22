@@ -17,9 +17,9 @@ interface EventStream
 {
     public function limitNextQuery(int $limit): void;
 
-    public function source(EventId $position, CorrelationId $correlationId = null): Events;
+    public function source(EventId $position, ?CorrelationId $correlationId = null): Events;
 
-    public function queued(?EventId $position, CorrelationId $correlationId = null): Events;
+    public function queued(?EventId $position, ?CorrelationId $correlationId = null): Events;
 
     public function lastEvent(): ?EventId;
 }
