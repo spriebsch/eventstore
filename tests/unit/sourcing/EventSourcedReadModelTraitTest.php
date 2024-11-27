@@ -81,12 +81,4 @@ class EventSourcedReadModelTraitTest extends TestCase
 
         $readModel->apply($event2);
     }
-
-    #[Group('exception')]
-    public function test_cannot_source_from_empty_Events(): void
-    {
-        $this->expectException(NoEventsToSourceFromException::class);
-
-        TestReadModel::sourceFrom(Events::from());
-    }
 }

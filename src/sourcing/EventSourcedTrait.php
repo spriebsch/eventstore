@@ -42,10 +42,6 @@ trait EventSourcedTrait
 
     private function reconstituteFrom(Events $events): void
     {
-        if (count($events) === 0) {
-            throw new NoEventsToSourceFromException;
-        }
-
         $this->sourcedEvents = $events;
 
         foreach ($events as $event) {
