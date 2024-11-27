@@ -53,6 +53,20 @@ abstract class AbstractEventStream implements EventStream
         );
     }
 
+    final public function all(
+        CorrelationId $correlationId = null
+    ): Events
+    {
+        return $this->query(
+            fn() => $this->eventReader->queued(
+                   null,
+                   $this->limitForNextQuery,
+                   $correlationId,
+                ...$this->topics()
+            )
+        );
+    }
+
     final public function lastEvent(): ?EventId
     {
         return $this->lastEventId;

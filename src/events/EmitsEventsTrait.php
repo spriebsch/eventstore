@@ -13,18 +13,18 @@ namespace spriebsch\eventstore;
 
 trait EmitsEventsTrait
 {
-    private array $events = [];
+    private array $newEvents = [];
 
     private function emit(Event $event): void
     {
-        $this->events[] = $event;
+        $this->newEvents[] = $event;
     }
 
-    public function events(): Events
+    public function newEvents(): Events
     {
-        $events = Events::from(...$this->events);
+        $events = Events::from(...$this->newEvents);
 
-        $this->events = [];
+        $this->newEvents = [];
 
         return $events;
     }

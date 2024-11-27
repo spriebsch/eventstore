@@ -13,7 +13,7 @@ namespace spriebsch\eventstore;
 
 trait EventSourcedTrait
 {
-    private ?EventId $lastSourcedEventId = null;
+    private Events $sourcedEvents;
 
     public static function sourceFrom(Events $events): static
     {
@@ -22,18 +22,22 @@ trait EventSourcedTrait
 
     public function lastEventId(): EventId
     {
-        $count = count($this->events);
+        if (!isset($this->newEvents)) {
+            return $this->lastSourcedEventId();
+        }
+
+        $count = count($this->newEvents);
 
         if ($count === 0) {
             return $this->lastSourcedEventId();
         }
 
-        return $this->events[$count - 1]->id();
+        return $this->newEvents[$count - 1]->id();
     }
 
     public function lastSourcedEventId(): EventId
     {
-        return $this->lastSourcedEventId;
+        return $this->sourcedEvents->lastEventId();
     }
 
     private function reconstituteFrom(Events $events): void
@@ -42,14 +46,19 @@ trait EventSourcedTrait
             throw new NoEventsToSourceFromException;
         }
 
+        $this->sourcedEvents = $events;
+
         foreach ($events as $event) {
             $this->apply($event);
-            $this->lastSourcedEventId = $event->id();
         }
     }
 
     private function apply(Event $event): void
     {
+        if (!isset($this->id)) {
+            $this->id = $event->correlationId();
+        }
+
         $method = $this->determineApplyMethodNameFor($event);
         $this->ensureCorrelationIdDoesNotChange($event->correlationId());
 
@@ -64,12 +73,8 @@ trait EventSourcedTrait
         return 'apply' . $basename;
     }
 
-    private function ensureCorrelationIdDoesNotChange(CorrelationId $correlationId)
+    private function ensureCorrelationIdDoesNotChange(CorrelationId $correlationId): void
     {
-        if (!isset($this->id)) {
-            $this->id = $correlationId;
-        }
-
         if ($correlationId->asUUID()->asString() !== $this->id->asString()) {
             throw new CorrelationIdHasChangedException($this->id, $correlationId);
         }

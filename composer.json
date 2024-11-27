@@ -61,5 +61,8 @@
       "phive update",
       "ln -s phpunit tools/phpunit.phar"
     ]
+  },
+  "require-dev": {
+    "phpstan/phpstan": "^2.0"
   }
 }

@@ -39,7 +39,7 @@ class EmitsEventsTraitTest extends TestCase
 
         $emitter->emitEvents($event1, $event2);
 
-        $events = iterator_to_array($emitter->events());
+        $events = iterator_to_array($emitter->newEvents());
 
         $this->assertCount(2, $events);
         $this->assertSame($event1, $events[0]);

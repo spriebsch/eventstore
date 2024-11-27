@@ -21,5 +21,7 @@ interface EventStream
 
     public function queued(?EventId $position, CorrelationId $correlationId = null): Events;
 
+    public function all(CorrelationId $correlationId = null): Events;
+
     public function lastEvent(): ?EventId;
 }
