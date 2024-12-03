@@ -25,7 +25,7 @@ abstract class AbstractEventStream implements EventStream
 
     final public function source(
         EventId       $position,
-        CorrelationId $correlationId = null
+        ?CorrelationId $correlationId = null
     ): Events
     {
         return $this->query(
@@ -40,7 +40,7 @@ abstract class AbstractEventStream implements EventStream
 
     final public function queued(
         ?EventId      $position,
-        CorrelationId $correlationId = null
+        ?CorrelationId $correlationId = null
     ): Events
     {
         return $this->query(
@@ -54,7 +54,7 @@ abstract class AbstractEventStream implements EventStream
     }
 
     final public function all(
-        CorrelationId $correlationId = null
+        ?CorrelationId $correlationId = null
     ): Events
     {
         return $this->query(
