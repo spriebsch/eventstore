@@ -22,10 +22,6 @@ trait EventSourcedTrait
 
     public function lastEventId(): EventId
     {
-        if (!isset($this->newEvents)) {
-            return $this->lastSourcedEventId();
-        }
-
         $count = count($this->newEvents);
 
         if ($count === 0) {
@@ -57,9 +53,7 @@ trait EventSourcedTrait
 
         $method = $this->determineApplyMethodNameFor($event);
 
-        if (property_exists($this, 'id')) {
-            $this->ensureCorrelationIdDoesNotChange($event->correlationId());
-        }
+        $this->ensureCorrelationIdDoesNotChange($event->correlationId());
 
         $this->$method($event);
     }

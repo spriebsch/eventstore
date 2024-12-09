@@ -2,10 +2,10 @@
 
 namespace spriebsch\eventstore;
 
-class NoEventsToSourceFromException extends Exception
+final class NoEventsToSourceFromException extends Exception
 {
     public function __construct()
     {
-        parent::__construct(sprintf('No events to source from'));
+        parent::__construct('No events to source from');
     }
 }

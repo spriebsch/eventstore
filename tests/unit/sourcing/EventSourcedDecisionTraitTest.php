@@ -52,6 +52,17 @@ class EventSourcedDecisionTraitTest extends TestCase
     }
 
     #[Group('feature')]
+    public function test_last_sourced_event_id_can_be_retrieved(): void
+    {
+        $id = TestCorrelationId::generate();
+        $event = TestSourcingEvent::from($id);
+
+        $sourced = TestDecision::sourceFrom(Events::from($event));
+
+        $this->assertSame($event->id()->asString(), $sourced->lastSourcedEventId()->asString());
+    }
+
+    #[Group('feature')]
     public function test_last_event_id_can_be_retrieved_after_state_change(): void
     {
         $id = TestCorrelationId::generate();

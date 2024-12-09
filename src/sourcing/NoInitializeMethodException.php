@@ -2,7 +2,7 @@
 
 namespace spriebsch\eventstore;
 
-class NoInitializeMethodException extends Exception
+final class NoInitializeMethodException extends Exception
 {
     public function __construct(object $object)
     {
