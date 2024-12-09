@@ -19,6 +19,7 @@ use spriebsch\eventstore\tests\TestSourcingEvent;
 
 #[CoversClass(EventSourcedDecisionTrait::class)]
 #[CoversClass(EventSourcedTrait::class)]
+#[CoversClass(NoInitializeMethodException::class)]
 #[UsesClass(EventId::class)]
 #[UsesClass(EventSourcedTrait::class)]
 #[UsesClass(Events::class)]
