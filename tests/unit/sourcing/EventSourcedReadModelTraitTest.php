@@ -20,7 +20,6 @@ use spriebsch\eventstore\tests\TestSourcingEvent;
 #[CoversClass(EventSourcedReadModelTrait::class)]
 #[CoversClass(EventSourcedTrait::class)]
 #[CoversClass(CorrelationIdHasChangedException::class)]
-#[CoversClass(NoEventsToSourceFromException::class)]
 #[UsesClass(EventId::class)]
 #[UsesClass(Events::class)]
 #[UsesClass(EventTrait::class)]

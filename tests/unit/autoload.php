@@ -9,6 +9,7 @@ spl_autoload_register(
             $classes = array(
                 'spriebsch\\eventstore\\abstractjsontestbase' => '/json/AbstractJsonTestBase.php',
                 'spriebsch\\eventstore\\abstractsqlstatementtestbase' => '/eventstore/AbstractSqlStatementTestBase.php',
+                'spriebsch\\eventstore\\alleventstreamtest' => '/stream/AllEventStreamTest.php',
                 'spriebsch\\eventstore\\emitseventstraittest' => '/events/EmitsEventsTraitTest.php',
                 'spriebsch\\eventstore\\eventassertionstrait' => '/EventAssertionsTrait.php',
                 'spriebsch\\eventstore\\eventfactorytest' => '/event/EventFactoryTest.php',
