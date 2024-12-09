@@ -24,6 +24,7 @@ use spriebsch\eventstore\tests\TestSourcingEvent;
 #[UsesClass(Events::class)]
 #[UsesClass(EventTrait::class)]
 #[UsesClass(EmitsEventsTrait::class)]
+#[UsesClass(NoInitializeMethodException::class)]
 class EventSourcedDecisionTraitTest extends TestCase
 {
     #[Group('feature')]
@@ -73,5 +74,13 @@ class EventSourcedDecisionTraitTest extends TestCase
         $decision = TestDecision::sourceFrom(Events::from($event));
 
         $this->assertSame($event, $decision->event());
+    }
+
+    #[Group('exception')]
+    public function test_class_must_have_initialize_method(): void
+    {
+        $this->expectException(NoInitializeMethodException::class);
+
+        TestDecisionWithoutInitializeMethod::from();
     }
 }

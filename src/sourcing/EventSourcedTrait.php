@@ -51,12 +51,15 @@ trait EventSourcedTrait
 
     private function apply(Event $event): void
     {
-        if (!isset($this->id)) {
+        if (property_exists($this, 'id') && !isset($this->id)) {
             $this->id = $event->correlationId();
         }
 
         $method = $this->determineApplyMethodNameFor($event);
-        $this->ensureCorrelationIdDoesNotChange($event->correlationId());
+
+        if (property_exists($this, 'id')) {
+            $this->ensureCorrelationIdDoesNotChange($event->correlationId());
+        }
 
         $this->$method($event);
     }
@@ -71,6 +74,10 @@ trait EventSourcedTrait
 
     private function ensureCorrelationIdDoesNotChange(CorrelationId $correlationId): void
     {
+        if (!property_exists($this, 'id')) {
+            return;
+        }
+
         if ($correlationId->asUUID()->asString() !== $this->id->asString()) {
             throw new CorrelationIdHasChangedException($this->id, $correlationId);
         }

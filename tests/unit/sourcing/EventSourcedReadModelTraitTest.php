@@ -31,7 +31,7 @@ class EventSourcedReadModelTraitTest extends TestCase
         $id = TestCorrelationId::generate();
         $event = TestSourcingEvent::from($id);
 
-        $sourced = TestReadModel::sourceFrom(Events::from($event));
+        $sourced = TestSingleCorrelationIdReadModel::sourceFrom(Events::from($event));
 
         $this->assertSame($event, $sourced->event());
     }
@@ -42,7 +42,7 @@ class EventSourcedReadModelTraitTest extends TestCase
         $event1 = TestSourcingEvent::from($id);
         $event2 = TestSourcingEvent::from($id);
 
-        $sourced = TestReadModel::sourceFrom(Events::from($event1));
+        $sourced = TestSingleCorrelationIdReadModel::sourceFrom(Events::from($event1));
         $sourced->apply($event2);
 
         $this->assertSame($event2, $sourced->event());
@@ -53,32 +53,54 @@ class EventSourcedReadModelTraitTest extends TestCase
         $id = TestCorrelationId::generate();
         $event = TestSourcingEvent::from($id);
 
-        $sourced = TestReadModel::sourceFrom(Events::from($event));
+        $sourced = TestSingleCorrelationIdReadModel::sourceFrom(Events::from($event));
 
         $this->assertSame($event->id()->asString(), $sourced->lastSourcedEventId()->asString());
     }
 
     #[Group('exception')]
-    public function test_CorrelationId_cannot_change(): void
+    public function test_CorrelationId_cannot_change_when_sourcing(): void
     {
         $event1 = TestSourcingEvent::from(TestCorrelationId::generate());
         $event2 = TestSourcingEvent::from(TestCorrelationId::generate());
 
         $this->expectException(CorrelationIdHasChangedException::class);
 
-        TestReadModel::sourceFrom(Events::from($event1, $event2));
+        TestSingleCorrelationIdReadModel::sourceFrom(Events::from($event1, $event2));
     }
 
     #[Group('exception')]
-    public function test_CorrelationId_cannot_change2(): void
+    public function test_CorrelationId_cannot_change_when_applying_events(): void
     {
         $event1 = TestSourcingEvent::from(TestCorrelationId::generate());
         $event2 = TestSourcingEvent::from(TestCorrelationId::generate());
 
-        $readModel = TestReadModel::sourceFrom(Events::from($event1));
+        $readModel = TestSingleCorrelationIdReadModel::sourceFrom(Events::from($event1));
 
         $this->expectException(CorrelationIdHasChangedException::class);
 
         $readModel->apply($event2);
+    }
+
+    #[Group('exception')]
+    public function test_CorrelationId_cannot_change_for_for_single_correlation_id_read_model(): void
+    {
+        $event1 = TestSourcingEvent::from(TestCorrelationId::generate());
+        $event2 = TestSourcingEvent::from(TestCorrelationId::generate());
+
+        $this->expectException(CorrelationIdHasChangedException::class);
+
+        TestSingleCorrelationIdReadModel::sourceFrom(Events::from($event1, $event2));
+    }
+
+    #[Group('feature')]
+    public function test_CorrelationId_can_change_for_multiple_correlation_id_read_model(): void
+    {
+        $event1 = TestSourcingEvent::from(TestCorrelationId::generate());
+        $event2 = TestSourcingEvent::from(TestCorrelationId::generate());
+
+        $model = TestMultipleCorrelationIdsReadModel::sourceFrom(Events::from($event1, $event2));
+
+        $this->assertInstanceOf(TestMultipleCorrelationIdsReadModel::class, $model);
     }
 }

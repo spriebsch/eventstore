@@ -36,6 +36,7 @@ spl_autoload_register(
                 'spriebsch\\eventstore\\noeventstosourcefromexception' => '/sourcing/NoEventsToSourceFromException.php',
                 'spriebsch\\eventstore\\noeventwiththatidexception' => '/eventstore/NoEventWithThatIdException.php',
                 'spriebsch\\eventstore\\noeventwiththattopicexception' => '/eventstore/NoEventWithThatTopicException.php',
+                'spriebsch\\eventstore\\noinitializemethodexception' => '/sourcing/NoInitializeMethodException.php',
                 'spriebsch\\eventstore\\nosuchsinceeventidexception' => '/eventstore/NoSuchSinceEventIdException.php',
                 'spriebsch\\eventstore\\notransactionrunningexception' => '/eventstore/NoTransactionRunningException.php',
                 'spriebsch\\eventstore\\queueselecteventssqlstatement' => '/sql/QueueSelectEventsSqlStatement.php',

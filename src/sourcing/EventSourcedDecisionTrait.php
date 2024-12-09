@@ -18,6 +18,10 @@ trait EventSourcedDecisionTrait
 
     private function __construct(?Events $events)
     {
+        if (!method_exists($this, 'initialize')) {
+            throw new NoInitializeMethodException($this);
+        }
+
         if ($events === null) {
             $this->record(
                 $this->initialize(
