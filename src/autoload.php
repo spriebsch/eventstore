@@ -33,7 +33,6 @@ spl_autoload_register(
                 'spriebsch\\eventstore\\json' => '/json/Json.php',
                 'spriebsch\\eventstore\\jsonevent' => '/json/JsonEvent.php',
                 'spriebsch\\eventstore\\keynotfoundinjsonexception' => '/json/KeyNotFoundInJsonException.php',
-                'spriebsch\\eventstore\\noeventstosourcefromexception' => '/sourcing/NoEventsToSourceFromException.php',
                 'spriebsch\\eventstore\\noeventwiththatidexception' => '/eventstore/NoEventWithThatIdException.php',
                 'spriebsch\\eventstore\\noeventwiththattopicexception' => '/eventstore/NoEventWithThatTopicException.php',
                 'spriebsch\\eventstore\\noinitializemethodexception' => '/sourcing/NoInitializeMethodException.php',

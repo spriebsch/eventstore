@@ -31,6 +31,16 @@ class Json
         $this->json = $json;
     }
 
+    public function getAsInt(string $key): int
+    {
+        return (int) $this->get($key);
+    }
+
+    public function getAsString(string $key): string
+    {
+        return (string) $this->get($key);
+    }
+
     public function get(?string $key = null): mixed
     {
         $this->lazilyDecodeData();

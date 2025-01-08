@@ -17,6 +17,22 @@ abstract class AbstractJsonTestBase extends TestCase
 {
     abstract protected function createJson(): Json;
 
+    public function test_scalar_value_can_be_retrieved_as_int(): void
+    {
+        $this->assertSame(
+            $this->array()['the-int-key'],
+            $this->createJson()->getAsInt('the-int-key')
+        );
+    }
+
+    public function test_scalar_value_can_be_retrieved_as_string(): void
+    {
+        $this->assertSame(
+            $this->array()['the-scalar-key'],
+            $this->createJson()->getAsString('the-scalar-key')
+        );
+    }
+
     public function test_scalar_value_can_be_retrieved(): void
     {
         $this->assertEquals(
@@ -63,6 +79,7 @@ abstract class AbstractJsonTestBase extends TestCase
     protected function array(): array
     {
         return [
+            'the-int-key' => 42,
             'the-scalar-key' => 'the-scalar-value',
             'the-array-key'  => ['the', 'array', 'value']
         ];
