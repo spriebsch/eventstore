@@ -33,6 +33,21 @@ abstract class AbstractJsonTestBase extends TestCase
         );
     }
 
+    public function test_null_value_can_be_retrieved(): void
+    {
+        $this->assertNull($this->createJson()->get('the-nullable-key'));
+    }
+
+    public function test_null_string_can_be_retrieved(): void
+    {
+        $this->assertNull($this->createJson()->getAsString('the-nullable-key'));
+    }
+
+    public function test_null_int_can_be_retrieved(): void
+    {
+        $this->assertNull($this->createJson()->getAsInt('the-nullable-key'));
+    }
+
     public function test_scalar_value_can_be_retrieved(): void
     {
         $this->assertEquals(
@@ -81,6 +96,7 @@ abstract class AbstractJsonTestBase extends TestCase
         return [
             'the-int-key' => 42,
             'the-scalar-key' => 'the-scalar-value',
+            'the-nullable-key' => null,
             'the-array-key'  => ['the', 'array', 'value']
         ];
     }

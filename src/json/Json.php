@@ -31,14 +31,26 @@ class Json
         $this->json = $json;
     }
 
-    public function getAsInt(string $key): int
+    public function getAsInt(string $key): ?int
     {
-        return (int) $this->get($key);
+        $result = $this->get($key);
+
+        if ($result === null) {
+            return null;
+        }
+
+        return (int) $result;
     }
 
-    public function getAsString(string $key): string
+    public function getAsString(string $key): ?string
     {
-        return (string) $this->get($key);
+        $result = $this->get($key);
+
+        if ($result === null) {
+            return null;
+        }
+
+        return (string) $result;
     }
 
     public function get(?string $key = null): mixed
@@ -77,6 +89,6 @@ class Json
 
     private function doesNotHaveKey(string $key): bool
     {
-        return !isset($this->data[$key]);
+        return !array_key_exists($key, $this->data);
     }
 }
