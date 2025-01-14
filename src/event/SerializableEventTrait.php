@@ -31,5 +31,14 @@ trait SerializableEventTrait
         );
     }
 
+    public static function create(string $class, mixed $value): ?object
+    {
+        if ($value === null) {
+            return null;
+        }
+
+        return $class::from($value);
+    }
+
     abstract protected function serialize(): array;
 }

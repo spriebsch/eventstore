@@ -20,7 +20,7 @@ use spriebsch\eventstore\SerializableEventTrait;
 use spriebsch\eventstore\TestCorrelationId;
 use spriebsch\timestamp\Timestamp;
 
-class TestEvent implements Event
+class TestWithNullablePropertyEvent implements Event
 {
     use EventTrait;
     use SerializableEventTrait;
@@ -29,28 +29,21 @@ class TestEvent implements Event
         private readonly EventId       $id,
         private readonly CorrelationId $correlationId,
         private readonly Timestamp     $timestamp,
-        private readonly string        $payload
+        private readonly ?TestValueObject $payload
     ) {}
-
-    public static function generate(): self
-    {
-        return new self(
-            EventId::generate(),
-            TestCorrelationId::generate(),
-            Timestamp::generate(),
-            'the-payload'
-        );
-    }
 
     public static function from(
         EventId       $eventId,
         CorrelationId $correlationId,
         Timestamp     $timestamp,
-        string        $payload
+        ?TestValueObject $payload
     ): self
     {
         return new self(
-            $eventId, $correlationId, $timestamp, $payload
+            $eventId,
+            $correlationId,
+            $timestamp,
+            self::create(TestValueObject::class, $payload)
         );
     }
 
@@ -69,7 +62,7 @@ class TestEvent implements Event
         return 'spriebsch.eventstore.the-test-topic';
     }
 
-    public function payload(): string
+    public function payload(): ?TestValueObject
     {
         return $this->payload;
     }
@@ -77,7 +70,7 @@ class TestEvent implements Event
     protected function serialize(): array
     {
         return [
-            'payload' => $this->payload
+            'payload' => $this->payload?->asString()
         ];
     }
 }

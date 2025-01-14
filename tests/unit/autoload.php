@@ -44,6 +44,8 @@ spl_autoload_register(
                 'spriebsch\\eventstore\\testmultiplecorrelationidsreadmodel' => '/../stubs/TestMultipleCorrelationIdsReadModel.php',
                 'spriebsch\\eventstore\\tests\\testevent' => '/../stubs/TestEvent.php',
                 'spriebsch\\eventstore\\tests\\testsourcingevent' => '/../stubs/TestSourcingEvent.php',
+                'spriebsch\\eventstore\\tests\\testvalueobject' => '/../stubs/TestValueObject.php',
+                'spriebsch\\eventstore\\tests\\testwithnullablepropertyevent' => '/../stubs/TestWithNullablePropertyEvent.php',
                 'spriebsch\\eventstore\\testsinglecorrelationidreadmodel' => '/../stubs/TestSingleCorrelationIdReadModel.php',
                 'spriebsch\\eventstore\\withinmemoryeventstore' => '/../stubs/WithInMemoryEventStore.php',
                 'spriebsch\\eventstore\\withinmemoryeventstoretraittest' => '/eventstore/WithInMemoryEventStoreTraitTest.php',

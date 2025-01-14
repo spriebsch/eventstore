@@ -17,6 +17,7 @@ use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use spriebsch\eventstore\tests\TestEvent;
+use spriebsch\eventstore\tests\TestWithNullablePropertyEvent;
 use spriebsch\timestamp\Timestamp;
 
 #[CoversClass(SerializableEventTrait::class)]
@@ -172,5 +173,23 @@ class EventTest extends TestCase
         );
 
         $this->assertJsonStringEqualsJsonString($expectedJson, json_encode($event));
+    }
+
+    public function test_nullable_value_object_property(): void
+    {
+        $id = EventId::generate();
+        $correlationId = TestCorrelationId::generate();
+        $timestamp = Timestamp::generate();
+
+        $event = TestWithNullablePropertyEvent::from(
+            $id,
+            $correlationId,
+            $timestamp,
+            null
+        );
+
+        $event = TestWithNullablePropertyEvent::fromJson(Json::from(json_encode($event)));
+
+        $this->assertNull($event->payload());
     }
 }
