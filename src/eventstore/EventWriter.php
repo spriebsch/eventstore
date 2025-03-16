@@ -13,8 +13,5 @@ namespace spriebsch\eventstore;
 
 interface EventWriter
 {
-    public function beginTransaction(): void;
     public function store(Events $events): void;
-
-    public function endTransaction(): void;
 }

@@ -99,9 +99,7 @@ class SqliteEventStoreTest extends TestCase
         );
 
         $writer = SqliteEventWriter::from($connection);
-        $writer->beginTransaction();
         $writer->store(Events::from($event1, $event2));
-        $writer->endTransaction();
 
         $reader = SqliteEventReader::from($connection);
 
@@ -409,29 +407,6 @@ class SqliteEventStoreTest extends TestCase
         $this->expectException(FailedToStoreEventException::class);
 
         $writer->store(Events::from($event));
-    }
-
-    #[Group('exception')]
-    public function test_transaction_cannot_be_started_when_running(): void
-    {
-        $connection = SqliteConnection::from(':memory:');
-        $writer = SqliteEventWriter::from($connection);
-        $writer->beginTransaction();
-
-        $this->expectException(TransactionRunningException::class);
-
-        $writer->beginTransaction();
-    }
-
-    #[Group('exception')]
-    public function test_transaction_cannot_be_ended_when_not_started(): void
-    {
-        $connection = SqliteConnection::from(':memory:');
-        $writer = SqliteEventWriter::from($connection);
-
-        $this->expectException(NoTransactionRunningException::class);
-
-        $writer->endTransaction();
     }
 
     private function threeTestEvents(): Events
