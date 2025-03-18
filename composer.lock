@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "dc3a4d5e6b592e5a08d160e9847816a4",
+    "content-hash": "f7929f80776e6159acf9e8b43cec4506",
     "packages": [
         {
             "name": "spriebsch/sqlite",
-            "version": "1.0.3",
+            "version": "1.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spriebsch/sqlite.git",
-                "reference": "f15613e781f6711b435d57e8579dc48bc1a513f0"
+                "reference": "a3de11bf564020cc2e9746179cc4c386b6e9573f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spriebsch/sqlite/zipball/f15613e781f6711b435d57e8579dc48bc1a513f0",
-                "reference": "f15613e781f6711b435d57e8579dc48bc1a513f0",
+                "url": "https://api.github.com/repos/spriebsch/sqlite/zipball/a3de11bf564020cc2e9746179cc4c386b6e9573f",
+                "reference": "a3de11bf564020cc2e9746179cc4c386b6e9573f",
                 "shasum": ""
             },
             "require": {
@@ -45,22 +45,22 @@
             "description": "Lightweight Sqlite wrapper with lazy connection and schema creation.",
             "support": {
                 "issues": "https://github.com/spriebsch/sqlite/issues",
-                "source": "https://github.com/spriebsch/sqlite/tree/1.0.3"
+                "source": "https://github.com/spriebsch/sqlite/tree/1.0.7"
             },
-            "time": "2024-03-07T11:31:58+00:00"
+            "time": "2024-09-09T20:58:52+00:00"
         },
         {
             "name": "spriebsch/timestamp",
-            "version": "1.0.0",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spriebsch/timestamp.git",
-                "reference": "59a74d63533478c763ad155ff9781ce0a38acb96"
+                "reference": "475363a8ce010b4318b9418942182f13143da238"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spriebsch/timestamp/zipball/59a74d63533478c763ad155ff9781ce0a38acb96",
-                "reference": "59a74d63533478c763ad155ff9781ce0a38acb96",
+                "url": "https://api.github.com/repos/spriebsch/timestamp/zipball/475363a8ce010b4318b9418942182f13143da238",
+                "reference": "475363a8ce010b4318b9418942182f13143da238",
                 "shasum": ""
             },
             "require": {
@@ -87,22 +87,22 @@
             "description": "A timestamp with microsecond granularity.",
             "support": {
                 "issues": "https://github.com/spriebsch/timestamp/issues",
-                "source": "https://github.com/spriebsch/timestamp/tree/1.0.0"
+                "source": "https://github.com/spriebsch/timestamp/tree/1.0.2"
             },
-            "time": "2024-01-29T20:56:10+00:00"
+            "time": "2024-09-09T20:59:20+00:00"
         },
         {
             "name": "spriebsch/uuid",
-            "version": "1.0.2",
+            "version": "1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spriebsch/UUID.git",
-                "reference": "8cb0e404094ff9651b525e5b544c4616441c8e75"
+                "reference": "75325ce64ef16a005cbb9cd63d6d5c1a389b95f8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spriebsch/UUID/zipball/8cb0e404094ff9651b525e5b544c4616441c8e75",
-                "reference": "8cb0e404094ff9651b525e5b544c4616441c8e75",
+                "url": "https://api.github.com/repos/spriebsch/UUID/zipball/75325ce64ef16a005cbb9cd63d6d5c1a389b95f8",
+                "reference": "75325ce64ef16a005cbb9cd63d6d5c1a389b95f8",
                 "shasum": ""
             },
             "require": {
@@ -129,24 +129,24 @@
             "description": "A fast and simple no-frills UUIDv4 implementation.",
             "support": {
                 "issues": "https://github.com/spriebsch/UUID/issues",
-                "source": "https://github.com/spriebsch/UUID/tree/1.0.2"
+                "source": "https://github.com/spriebsch/UUID/tree/1.0.3"
             },
-            "time": "2024-03-01T17:13:59+00:00"
+            "time": "2024-09-09T20:59:41+00:00"
         }
     ],
     "packages-dev": [
         {
             "name": "phpstan/phpstan",
-            "version": "2.0.2",
+            "version": "2.1.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "6c98c7600fc717b2c78c11ef60040d5b1e359c82"
+                "reference": "f9adff3b87c03b12cc7e46a30a524648e497758f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/6c98c7600fc717b2c78c11ef60040d5b1e359c82",
-                "reference": "6c98c7600fc717b2c78c11ef60040d5b1e359c82",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/f9adff3b87c03b12cc7e46a30a524648e497758f",
+                "reference": "f9adff3b87c03b12cc7e46a30a524648e497758f",
                 "shasum": ""
             },
             "require": {
@@ -191,7 +191,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-11-17T14:17:00+00:00"
+            "time": "2025-03-09T09:30:48+00:00"
         }
     ],
     "aliases": [],
@@ -200,12 +200,12 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^8.3",
+        "php": "^8.4",
         "ext-sqlite3": "*"
     },
     "platform-dev": {},
     "platform-overrides": {
-        "php": "8.3"
+        "php": "8.4"
     },
     "plugin-api-version": "2.6.0"
 }

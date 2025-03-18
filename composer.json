@@ -17,14 +17,14 @@
   },
   "config": {
     "platform": {
-      "php": "8.3"
+      "php": "8.4"
     },
     "optimize-autoloader": true,
     "sort-packages": true
   },
   "prefer-stable": true,
   "require": {
-    "php": "^8.3",
+    "php": "^8.4",
     "ext-sqlite3": "*",
     "spriebsch/sqlite": "^1.0",
     "spriebsch/timestamp": "^1.0",
