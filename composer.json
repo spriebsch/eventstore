@@ -26,8 +26,8 @@
   "require": {
     "php": "^8.4",
     "ext-sqlite3": "*",
-    "spriebsch/sqlite": "^1.0",
-    "spriebsch/timestamp": "^1.0",
+    "spriebsch/sqlite": "^2.0",
+    "spriebsch/timestamp": "^1.1",
     "spriebsch/uuid": "^1.0"
   },
   "scripts": {

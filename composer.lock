@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f7929f80776e6159acf9e8b43cec4506",
+    "content-hash": "a5ee66fefe9e4c4bc95a89bc0b7ad5c6",
     "packages": [
         {
             "name": "spriebsch/sqlite",
-            "version": "1.0.7",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spriebsch/sqlite.git",
-                "reference": "a3de11bf564020cc2e9746179cc4c386b6e9573f"
+                "reference": "e46d70767783b42c613b6bfea3f308759cee5259"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spriebsch/sqlite/zipball/a3de11bf564020cc2e9746179cc4c386b6e9573f",
-                "reference": "a3de11bf564020cc2e9746179cc4c386b6e9573f",
+                "url": "https://api.github.com/repos/spriebsch/sqlite/zipball/e46d70767783b42c613b6bfea3f308759cee5259",
+                "reference": "e46d70767783b42c613b6bfea3f308759cee5259",
                 "shasum": ""
             },
             "require": {
@@ -45,22 +45,22 @@
             "description": "Lightweight Sqlite wrapper with lazy connection and schema creation.",
             "support": {
                 "issues": "https://github.com/spriebsch/sqlite/issues",
-                "source": "https://github.com/spriebsch/sqlite/tree/1.0.7"
+                "source": "https://github.com/spriebsch/sqlite/tree/2.0.0"
             },
-            "time": "2024-09-09T20:58:52+00:00"
+            "time": "2025-04-29T14:58:44+00:00"
         },
         {
             "name": "spriebsch/timestamp",
-            "version": "1.1.0",
+            "version": "1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spriebsch/timestamp.git",
-                "reference": "a41e7fb51e2cd649794fcb4ed7cf3d0a65124a91"
+                "reference": "8eba43ac23dc443370c2651ce777942d8c0d7119"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spriebsch/timestamp/zipball/a41e7fb51e2cd649794fcb4ed7cf3d0a65124a91",
-                "reference": "a41e7fb51e2cd649794fcb4ed7cf3d0a65124a91",
+                "url": "https://api.github.com/repos/spriebsch/timestamp/zipball/8eba43ac23dc443370c2651ce777942d8c0d7119",
+                "reference": "8eba43ac23dc443370c2651ce777942d8c0d7119",
                 "shasum": ""
             },
             "require": {
@@ -87,9 +87,9 @@
             "description": "A timestamp with microsecond granularity.",
             "support": {
                 "issues": "https://github.com/spriebsch/timestamp/issues",
-                "source": "https://github.com/spriebsch/timestamp/tree/1.1.0"
+                "source": "https://github.com/spriebsch/timestamp/tree/1.1.1"
             },
-            "time": "2025-04-02T17:19:28+00:00"
+            "time": "2025-04-10T17:22:26+00:00"
         },
         {
             "name": "spriebsch/uuid",
@@ -137,16 +137,16 @@
     "packages-dev": [
         {
             "name": "phpstan/phpstan",
-            "version": "2.1.11",
+            "version": "2.1.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "8ca5f79a8f63c49b2359065832a654e1ec70ac30"
+                "reference": "e55e03e6d4ac49cd1240907e5b08e5cd378572a9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/8ca5f79a8f63c49b2359065832a654e1ec70ac30",
-                "reference": "8ca5f79a8f63c49b2359065832a654e1ec70ac30",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/e55e03e6d4ac49cd1240907e5b08e5cd378572a9",
+                "reference": "e55e03e6d4ac49cd1240907e5b08e5cd378572a9",
                 "shasum": ""
             },
             "require": {
@@ -191,7 +191,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-03-24T13:45:00+00:00"
+            "time": "2025-04-27T12:28:25+00:00"
         }
     ],
     "aliases": [],
