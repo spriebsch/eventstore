@@ -34,6 +34,7 @@ final class SqliteEventStoreSchema extends SqliteSchema
     protected function createSchema(Connection $connection): void
     {
         $connection->exec($this->sql());
+        $connection->exec('PRAGMA journal_mode=WAL');
     }
 
     private function sql(): string
