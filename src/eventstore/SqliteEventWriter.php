@@ -45,7 +45,7 @@ class SqliteEventWriter implements EventWriter
             );
         }
 
-        $this->connection->exec('END TRANSACTION');
+        $this->connection->exec('COMMIT');
     }
 
     private function insertEvent(string $topic, EventId $eventId, CorrelationId $correlationId, string $json): void
