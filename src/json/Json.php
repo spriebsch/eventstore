@@ -80,6 +80,25 @@ class Json
 
     private function getKey(string $key): mixed
     {
+        if (str_contains($key, '.')) {
+            $parts = explode('.', $key);
+            if (!isset($this->data[$parts[0]])) {
+                throw new KeyNotFoundInJsonException($key);
+            }
+
+            $data = $this->data[$parts[0]];
+
+            foreach (array_slice($parts, 1) as $part) {
+                if (!isset($data[$part])) {
+                    throw new KeyNotFoundInJsonException($key);
+                }
+
+                $data = $data[$part];
+            }
+
+            return $data;
+        }
+
         if ($this->doesNotHaveKey($key)) {
             throw new KeyNotFoundInJsonException($key);
         }

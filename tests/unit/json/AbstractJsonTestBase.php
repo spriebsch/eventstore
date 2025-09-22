@@ -64,6 +64,22 @@ abstract class AbstractJsonTestBase extends TestCase
         );
     }
 
+    public function test_associative_array_can_be_retrieved(): void
+    {
+        $this->assertEquals(
+            $this->array()['the-associative-array-key'],
+            $this->createJson()->get('the-associative-array-key')
+        );
+    }
+
+    public function test_nested_key_can_be_retrieved(): void
+    {
+        $this->assertEquals(
+            $this->array()['the-associative-array-key']['key1'],
+            $this->createJson()->get('the-associative-array-key.key1')
+        );
+    }
+
     public function test_exception_when_key_does_not_exist(): void
     {
         $json = $this->createJson();
@@ -97,7 +113,8 @@ abstract class AbstractJsonTestBase extends TestCase
             'the-int-key' => 42,
             'the-scalar-key' => 'the-scalar-value',
             'the-nullable-key' => null,
-            'the-array-key'  => ['the', 'array', 'value']
+            'the-array-key'  => ['the', 'array', 'value'],
+            'the-associative-array-key'  => ['key1' => 'the-value-1', 'key2' => 'the-value-2']
         ];
     }
 }
