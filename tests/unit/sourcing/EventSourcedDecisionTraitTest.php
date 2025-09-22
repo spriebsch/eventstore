@@ -21,11 +21,9 @@ use spriebsch\eventstore\tests\TestSourcingEvent;
 #[CoversClass(EventSourcedTrait::class)]
 #[CoversClass(NoInitializeMethodException::class)]
 #[UsesClass(EventId::class)]
-#[UsesClass(EventSourcedTrait::class)]
 #[UsesClass(Events::class)]
 #[UsesClass(EventTrait::class)]
 #[UsesClass(EmitsEventsTrait::class)]
-#[UsesClass(NoInitializeMethodException::class)]
 class EventSourcedDecisionTraitTest extends TestCase
 {
     #[Group('feature')]
